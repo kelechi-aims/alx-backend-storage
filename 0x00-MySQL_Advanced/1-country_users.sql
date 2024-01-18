@@ -3,6 +3,8 @@
 -- email, string (255 characters), never null and unique
 -- name, string (255 characters)
 -- country, enumeration of countries: US, CO and TN, never null (= default will be the first element of the enumeration, here US)
+-- Drop existing table if it exists
+DROP TABLE IF EXISTS users;
 
 -- Creates a table 'user' if not exists
 CREATE TABLE IF NOT EXISTS users(
