@@ -18,11 +18,11 @@ BEGIN
 	IF total_weight > 0 THEN
 		UPDATE users
 		SET users.average_score = total_weighted_score / total_weight
-		WHERE users.ud = user_id;
+		WHERE users.id = user_id;
 	ELSE
 		UPDATE users
-		SET users. average_score = 0
-		WHERE users.ud = user_id;
+		SET users.average_score = 0
+		WHERE users.id = user_id;
 	END IF;
 END $$
 
