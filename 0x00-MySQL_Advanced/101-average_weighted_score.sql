@@ -29,7 +29,7 @@ BEGIN
     ALTER TABLE users
         DROP COLUMN total_weighted_score;
     ALTER TABLE users
-        DROP COLUMN total_weighted_score;
+        DROP COLUMN total_weight;
 END $$
 
 DELIMITER ;
