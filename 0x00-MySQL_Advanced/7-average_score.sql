@@ -15,12 +15,12 @@ BEGIN
     SELECT SUM(score), COUNT(DISTINCT project_id)
     INTO total_score, total_projects
     FROM corrections
-    WHERE user_id = user_id;
+    WHERE corrections.user_id = user_id;
 
     -- Update the average score for the user
     UPDATE users
-    SET average_score = IF(total_projects > 0, total_score / total_projects, 0)
-    WHERE id = user_id;
+    SET users.average_score = IF(total_projects > 0, total_score / total_projects, 0)
+    WHERE users.id = user_id;
 END $$
 
 DELIMITER ;
