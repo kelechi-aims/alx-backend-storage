@@ -9,6 +9,8 @@ BEGIN
     -- Check if the email attribute is being updated
     IF NEW.email != OLD.email THEN
 	SET NEW.valid_email = 0;
+    ELSE
+        SET NEW.valid_email = NEW.valid_email;
     END IF;
 END;
 
