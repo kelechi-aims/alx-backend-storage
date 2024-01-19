@@ -12,18 +12,16 @@ BEGIN
         SET total_weighted_score = (
             SELECT SUM(corrections.score * projects.weight)
             FROM corrections
-                INNER JOIN projects
-                    ON corrections.project_id = projects.id
+            JOIN projects ON corrections.project_id = projects.id
             WHERE corrections.user_id = users.id
             );
 
     UPDATE users
         SET total_weight = (
             SELECT SUM(projects.weight)
-                FROM corrections
-                    INNER JOIN projects
-                        ON corrections.project_id = projects.id
-                WHERE corrections.user_id = users.id
+            FROM corrections
+            JOIN projects ON corrections.project_id = projects.id
+            WHERE corrections.user_id = users.id
             );
 
     UPDATE users
