@@ -13,4 +13,4 @@ def list_all(mongo_collection):
     Returns:
         A list of documents in the collection.
     """
-    return list(mongo_collection.find())
+    return [document for document in mongo_collection.find()]
