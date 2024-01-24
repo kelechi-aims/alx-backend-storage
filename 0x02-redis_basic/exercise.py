@@ -43,19 +43,15 @@ def replay(method: Callable) -> None:
     """
     Display the history of calls of a particular function.
     Retrieve input and output list keys
-    
-    cache_instance = getattr(method.__self__, '_redis', None)
     """
+    cache_instance = getattr(method.__self__, '_redis', None)
 
     input_key = "{}:inputs".format(method.__qualname__)
     output_key = "{}:outputs".format(method.__qualname__)
 
-    """ Retrieve input and output lists from Redis
+    """ Retrieve input and output lists from Redis"""
     inputs = cache_instance.lrange(input_key, 0, -1)
     outputs = cache_instance.lrange(output_key, 0, -1)
-    """
-    inputs = Cache._redis.lrange(input_key, 0, -1)
-    outputs = Cache._redis.lrange(output_key, 0, -1)
 
     """ Display the history of calls """
     print(f"{method.__qualname__} was called {len(inputs)} times:")
