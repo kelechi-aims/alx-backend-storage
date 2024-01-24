@@ -56,7 +56,8 @@ def replay(method: Callable) -> None:
     """ Display the history of calls """
     print(f"{method.__qualname__} was called {len(inputs)} times:")
     for input_args, output in zip(inputs, outputs):
-        print(f"{method.__qualname__}{eval(input_args)} -> {output}")
+        print("{}(*{}) -> {}".format(
+            method.__qualname__, input_args.decode("utf-8"), output))
 
 
 class Cache:
