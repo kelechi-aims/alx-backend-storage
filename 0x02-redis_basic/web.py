@@ -9,7 +9,7 @@ from typing import Callable
 def count_calls(method: Callable) -> Callable:
     """Decorator to count the number of times a function is called"""
     @wraps(method)
-    def wrappeer(url: str) -> str:
+    def wrapper(url: str) -> str:
         """ Initialize Redis client """
         redis_store = redis.Redis()
 
@@ -32,7 +32,7 @@ def count_calls(method: Callable) -> Callable:
 
         return result
 
-    return wraaper
+    return wrapper
 
 
 @count_calls
@@ -40,3 +40,10 @@ def get_page(url: str) -> str:
     """ Function to obtain HTML content or a URL """
     response = requests.get(url)
     return response.text
+
+
+if __name__ == "__main__":
+    # Example usage
+    slow_url = "http://slowwly.robertomurray.co.uk/delay/5000/url/http://www.google.com"
+    content = get_page(slow_url)
+    print(content)
