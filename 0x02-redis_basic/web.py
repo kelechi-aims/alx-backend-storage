@@ -15,7 +15,7 @@ def count_calls(method: Callable) -> Callable:
 
         """ Increment access count for the URL """
         url_key = f"count:{url}"
-        access_count = redis_store.incr(url_key)
+        redis_store.incr(url_key)
 
         """ Cache the result with an expiration time of 10 sec """
         result_key = f"result:{url}"
@@ -26,6 +26,7 @@ def count_calls(method: Callable) -> Callable:
 
         """ Call the original function """
         result = method(url)
+        redis_store.set(url_key, 0)
 
         """ Cache the result with expiration """
         redis_store.setex(result_key, 10, result)
@@ -40,10 +41,3 @@ def get_page(url: str) -> str:
     """ Function to obtain HTML content or a URL """
     response = requests.get(url)
     return response.text
-
-
-if __name__ == "__main__":
-    # Example usage
-    slow_url = "http://slowwly.robertomurray.co.uk/delay/5000/url/http://www.google.com"
-    content = get_page(slow_url)
-    print(content)
