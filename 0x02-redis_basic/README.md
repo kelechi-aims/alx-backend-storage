@@ -1,5 +1,8 @@
-# 0x02. Redis basic
+# Redis Basics Curriculum
 
+## Overview 
+
+- **Title:** Redis Basics
 - **Category:** Back-end
 - **By** Emmanuel Turlay, Staff Software Engineer at Cruise
 - **Weight:** 1
